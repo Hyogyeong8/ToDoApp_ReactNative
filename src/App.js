@@ -10,8 +10,12 @@ export default function App() {
     <View style={styles.container}>
       <Text>Hello, Diana</Text>
       <StatusBar style="auto" />
+
+      {/* 인프런_커스텀 컴포넌트 강좌 */}
       <Button title="Login" onPress={() => alert("Step to login")} />
       <MyButton title="MyButton 1" onPress={() => alert("1")} />
+
+      {/* 인프런 props 강좌 */}
       <MyButton title="MyButton 2" onPress={() => alert("2")}>
         MyButton3
       </MyButton>
