@@ -3,6 +3,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { styles, orangeText } from "./style";
 import Box from "./Box";
+import Shadow from "./Shadow";
 
 export default function App() {
   return (
@@ -12,9 +13,12 @@ export default function App() {
       <Text style={[styles.text, styles.errorText]}>Error message</Text> */}
 
       {/* flexbox 강의 */}
-      <Box style={{ backgroundColor: "blue", flex: 1 }} />
+      {/* <Box style={{ backgroundColor: "blue", flex: 1 }} />
       <Box style={{ backgroundColor: "white", flex: 1 }} />
-      <Box style={{ backgroundColor: "red", flex: 1 }} />
+      <Box style={{ backgroundColor: "red", flex: 1 }} /> */}
+
+      {/* shadow 강의 */}
+      <Shadow />
       <StatusBar style="auto" />
     </View>
   );
