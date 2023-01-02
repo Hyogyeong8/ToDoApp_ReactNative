@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "react-native";
 import styled, { ThemeProvider } from "styled-components/native";
 import { theme } from "./theme";
 import Input from "./component/input";
+import IconButton from "./component/iconButton";
+import { icons } from "./icons";
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -21,6 +23,15 @@ const Title = styled.Text`
 `;
 
 export default function App() {
+  const [newTask, setNewTask] = useState("");
+
+  const addTask = () => {
+    alert(newTask);
+    setNewTask("");
+  };
+
+  // console.log("check icon: %i", icons.check);
+  // console.log(typeof icons.check);
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -29,7 +40,16 @@ export default function App() {
           backgroundColor={theme.background}
         />
         <Title>ToDO List</Title>
-        <Input />
+        <Input
+          placeholder="+ Add a Task"
+          value={newTask}
+          onChangeText={(text) => setNewTask(text)}
+          onSubmitEditing={addTask}
+        />
+        <IconButton icon={icons.check} onPress={() => alert("check")} />
+        <IconButton icon={icons.uncheck} onPress={() => alert("uncheck")} />
+        <IconButton icon={icons.edit} onPress={() => alert("edit")} />
+        <IconButton icon={icons.delete} onPress={() => alert("delete")} />
       </Container>
     </ThemeProvider>
   );
