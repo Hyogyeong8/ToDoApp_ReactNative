@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { StatusBar } from "react-native";
 import styled, { ThemeProvider } from "styled-components/native";
 import { theme } from "./theme";
-import Input from "./component/input";
-import IconButton from "./component/iconButton";
-import { icons } from "./icons";
+import Input from "./component/Input";
+import Task from "./component/Task";
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -22,16 +21,44 @@ const Title = styled.Text`
   padding: 0px 20px;
 `;
 
+const List = styled.ScrollView`
+  flex: 1;
+  width: 100%;
+`;
+
 export default function App() {
   const [newTask, setNewTask] = useState("");
 
-  const addTask = () => {
-    alert(newTask);
-    setNewTask("");
+  const tempData = {
+    1: { id: "1", text: "React Native", completed: false },
+    2: { id: "2", text: "Expo ", completed: true },
+    3: { id: "3", text: "JavaScript", completed: false },
   };
 
-  // console.log("check icon: %i", icons.check);
-  // console.log(typeof icons.check);
+  const [tasks, setTasks] = useState(tempData);
+
+  const addTask = () => {
+    if (newTask.length < 1) return;
+    const ID = Date.now().toString();
+    const newTaskObject = {
+      [ID]: { id: ID, text: newTask, completed: false },
+    };
+    setNewTask("");
+    setTasks({ ...tasks, ...newTaskObject });
+  };
+
+  const deleteTask = (id) => {
+    const currentTasks = Object.assign({}, tasks);
+    delete currentTasks[id];
+    setTasks(currentTasks);
+  };
+
+  const toggleTask = (id) => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[id]["completed"] = !currentTasks[id]["completed"];
+    setTasks(currentTasks);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -46,10 +73,18 @@ export default function App() {
           onChangeText={(text) => setNewTask(text)}
           onSubmitEditing={addTask}
         />
-        <IconButton icon={icons.check} onPress={() => alert("check")} />
-        <IconButton icon={icons.uncheck} onPress={() => alert("uncheck")} />
-        <IconButton icon={icons.edit} onPress={() => alert("edit")} />
-        <IconButton icon={icons.delete} onPress={() => alert("delete")} />
+        <List>
+          {Object.values(tasks)
+            .reverse()
+            .map((item) => (
+              <Task
+                key={item.id}
+                item={item}
+                deleteTask={deleteTask}
+                toggleTask={toggleTask}
+              />
+            ))}
+        </List>
       </Container>
     </ThemeProvider>
   );
