@@ -28,6 +28,7 @@ const IconButton = ({ icon, onPress, item }) => {
 
 IconButton.defaultProps = {
   item: { completed: false },
+  id: "",
 };
 
 IconButton.propTypes = {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, Dimensions } from "react-native";
 import styled, { ThemeProvider } from "styled-components/native";
 import { theme } from "./theme";
 import Input from "./component/Input";
@@ -21,12 +21,14 @@ const Title = styled.Text`
   padding: 0px 20px;
 `;
 
+// const List = styled.ScrollView.attrs(()=>({contentContainerStyle: {{allignItems: "center"}}}))`
 const List = styled.ScrollView`
   flex: 1;
-  width: 100%;
+  width: ${({ width }) => width - 40}px;
 `;
 
 export default function App() {
+  const width = Dimensions.get("window").width;
   const [newTask, setNewTask] = useState("");
 
   const tempData = {
@@ -59,6 +61,12 @@ export default function App() {
     setTasks(currentTasks);
   };
 
+  const updaateTask = (item) => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[item.id] = item;
+    setTasks(currentTasks);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -73,7 +81,7 @@ export default function App() {
           onChangeText={(text) => setNewTask(text)}
           onSubmitEditing={addTask}
         />
-        <List>
+        <List width={width}>
           {Object.values(tasks)
             .reverse()
             .map((item) => (
@@ -82,6 +90,7 @@ export default function App() {
                 item={item}
                 deleteTask={deleteTask}
                 toggleTask={toggleTask}
+                updateTask={updaateTask}
               />
             ))}
         </List>
