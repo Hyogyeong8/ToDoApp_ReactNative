@@ -93,7 +93,7 @@ export default function App() {
                     barStyle="light-content"
                     backgroundColor={theme.background}
                 />
-                <Title>ToDO List</Title>
+                <Title>ToDo List</Title>
                 <Input
                     placeholder="+ Add a Task"
                     value={newTask}
