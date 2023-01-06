@@ -1,20 +1,32 @@
+import React, { createContext } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import styled from "styled-components/native";
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledText = styled.Text`
+  font-size: 30px;
+  font-weight: 600;
+`;
 
 export default function App() {
+  const UserContext = createContext({ name: "Diana" });
   return (
-    <View style={styles.container}>
-      <Text>Hello, Diana</Text>
-      <StatusBar style="auto" />
-    </View>
+    <UserContext.Provider value={{ name: "Diana Kim" }}>
+      <Container>
+        <UserContext.Consumer>
+          {(value) => {
+            console.log(value);
+            return <StyledText>{value?.name}</StyledText>;
+          }}
+        </UserContext.Consumer>
+        <StatusBar style="auto" />
+      </Container>
+    </UserContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
