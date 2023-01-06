@@ -1,6 +1,8 @@
 import React, { createContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import styled from "styled-components/native";
+import User from "./components/User";
+import { UserProvider } from "./context/User";
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -9,24 +11,13 @@ const Container = styled.SafeAreaView`
   justify-content: center;
 `;
 
-const StyledText = styled.Text`
-  font-size: 30px;
-  font-weight: 600;
-`;
-
 export default function App() {
-  const UserContext = createContext({ name: "Diana" });
   return (
-    <UserContext.Provider value={{ name: "Diana Kim" }}>
+    <UserProvider>
       <Container>
-        <UserContext.Consumer>
-          {(value) => {
-            console.log(value);
-            return <StyledText>{value?.name}</StyledText>;
-          }}
-        </UserContext.Consumer>
+        <User />
         <StatusBar style="auto" />
       </Container>
-    </UserContext.Provider>
+    </UserProvider>
   );
 }
