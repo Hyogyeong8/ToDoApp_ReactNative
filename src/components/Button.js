@@ -1,7 +1,8 @@
 import React from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 
-const StyledButton = styled.TouchableOpacity`
+const Container = styled.View`
   background-color: lavender;
   color: slateblue;
   padding: 10px;
@@ -17,9 +18,11 @@ const StyledText = styled.Text`
 
 const Button = ({ title, onPress }) => {
   return (
-    <StyledButton onPress={onPress}>
-      <StyledText>{title}</StyledText>
-    </StyledButton>
+    <TouchableOpacity onPress={onPress}>
+      <Container>
+        <StyledText>{title}</StyledText>
+      </Container>
+    </TouchableOpacity>
   );
 };
 
