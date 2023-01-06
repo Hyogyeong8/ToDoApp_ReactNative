@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components/native";
-import { UserConsumer } from "../context/User";
+import UserContext, { UserConsumer } from "../context/User";
 
 const StyledText = styled.Text`
   font-size: 30px;
@@ -16,24 +16,19 @@ const StyledInput = styled.TextInput`
 
 const User = () => {
   const [text, setText] = useState("");
+  const { name, setName } = useContext(UserContext);
 
   return (
     <>
-      <UserConsumer>
-        {({ name }) => <StyledText>Name: {name}</StyledText>}
-      </UserConsumer>
-      <UserConsumer>
-        {({ setName }) => (
-          <StyledInput
-            value={text}
-            onChangeText={setText}
-            onSubmitEditing={() => {
-              setName(text);
-              setText("");
-            }}
-          />
-        )}
-      </UserConsumer>
+      <StyledText>Name: {name}</StyledText>
+      <StyledInput
+        value={text}
+        onChangeText={setText}
+        onSubmitEditing={() => {
+          setName(text);
+          setText("");
+        }}
+      />
     </>
   );
 };
