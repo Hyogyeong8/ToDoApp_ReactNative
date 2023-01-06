@@ -4,7 +4,6 @@ import Button from "../components/Button";
 
 const Container = styled.View`
   align-items: center;
-  background-color: #fff;
 `;
 
 const StyledText = styled.Text`
