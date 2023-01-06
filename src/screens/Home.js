@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components/native";
 import Button from "../components/Button";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Container = styled.View`
   align-items: center;
+  padding-top: ${({ insets: { top } }) => top}px;
 `;
 
 const StyledText = styled.Text`
@@ -12,8 +14,11 @@ const StyledText = styled.Text`
 `;
 
 const Home = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
+  // console.log(insets);
+
   return (
-    <Container>
+    <Container insets={insets}>
       <StyledText>Home</StyledText>
       <Button title="List" onPress={() => navigation.navigate("List")}></Button>
     </Container>

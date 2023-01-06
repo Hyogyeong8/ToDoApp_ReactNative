@@ -5,7 +5,7 @@ export default function App() {
   return (
     <>
       <Navigation />
-      <StatusBar />
+      {/* <StatusBar style="auto" /> */}
     </>
   );
 }
