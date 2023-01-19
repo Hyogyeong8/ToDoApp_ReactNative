@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 const StackNav = () => {
   return (
     <Stack.Navigator
-      initialRouteName='Home'
+      initialRouteName="Home"
       screenOptions={{
         cardStyle: { backgroundColor: "#eee" },
         headerStyle: {
@@ -23,13 +23,7 @@ const StackNav = () => {
         headerTitleAlign: "center",
         headerTitle: ({ style, tintColor }) => {
           // console.log(props);
-          return (
-            <FontAwesome5
-              name='react'
-              style={style}
-              color={tintColor}
-            />
-          );
+          return <FontAwesome5 name="react" style={style} color={tintColor} />;
         },
         headerTintColor: "maroon",
         headerBackTitle: "Prev",
@@ -37,19 +31,19 @@ const StackNav = () => {
       }}
     >
       <Stack.Screen
-        name='Home'
+        name="Home"
         component={Home}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name='List'
+        name="List"
         component={List}
         options={{
           headerTitle: "My List",
           headerBackImage: ({ tintColor }) => {
             return (
               <MaterialIcons
-                name='keyboard-backspace'
+                name="keyboard-backspace"
                 size={20}
                 color={tintColor}
                 style={{ margin: 10 }}
@@ -59,7 +53,7 @@ const StackNav = () => {
         }}
       />
       <Stack.Screen
-        name='Chat'
+        name="Chat"
         component={Chat}
         options={({ route }) => ({ headerTitle: route.params.name })}
       />
