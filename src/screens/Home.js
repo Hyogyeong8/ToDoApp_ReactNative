@@ -20,7 +20,10 @@ const Home = ({ navigation }) => {
   return (
     <Container insets={insets}>
       <StyledText>Home</StyledText>
-      <Button title="List" onPress={() => navigation.navigate("List")}></Button>
+      <Button
+        title='List'
+        onPress={() => navigation.navigate("List")}
+      ></Button>
     </Container>
   );
 };

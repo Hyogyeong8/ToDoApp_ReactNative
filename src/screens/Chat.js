@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import styled from "styled-components/native";
 import Button from "../components/Button";
 
@@ -20,7 +20,7 @@ const Chat = ({ route, navigation }) => {
       <StyledText>{route.params.id}</StyledText>
       <StyledText>{route.params.name}</StyledText>
       <Button
-        title="Home"
+        title='Home'
         onPress={() =>
           navigation.reset({ routes: [{ name: "Home" }, { name: "List" }] })
         }
